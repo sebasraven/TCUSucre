@@ -1,0 +1,74 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Inventario Escolar - Prototipo";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">📦 Inventario Escolar</h1>
+    <p class="text-center text-muted">Prototipo visual - Escuela Antonio José de Sucre</p>
+
+    <hr />
+
+    <!-- Botones principales -->
+    <div class="d-flex justify-content-center mb-4">
+        <a class="btn btn-primary mx-2" asp-page="/Inventario/Create">➕ Registrar Bien</a>
+        <a class="btn btn-success mx-2" asp-page="/Inventario/List">📋 Consultar Inventario</a>
+        <a class="btn btn-info mx-2" asp-page="/Inventario/Export">⬇️ Exportar a Excel</a>
+    </div>
+
+    <!-- Tabla de ejemplo -->
+    <h3 class="mt-4">Inventario de Bienes</h3>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>N° de identif.</th>
+                <th>Descripción</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Serie</th>
+                <th>Estado</th>
+                <th>Ubicación</th>
+                <th>Modo de Adquisición</th>
+                <th>Observaciones</th>
+                <th>Observaciones Institucionales</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ejemplo de fila -->
+            <tr>
+                <td>0377-1927</td>
+                <td>Computadora de escritorio</td>
+                <td>Dell</td>
+                <td>Optiplex 3080</td>
+                <td>SN12345</td>
+                <td>Bueno</td>
+                <td>Aula 1</td>
+                <td>Compra</td>
+                <td>Equipo en uso diario</td>
+                <td>Asignado a laboratorio</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-page="/Inventario/Edit">✏️ Editar</a>
+                    <a class="btn btn-sm btn-danger" asp-page="/Inventario/Delete">🗑️ Eliminar</a>
+                </td>
+            </tr>
+            <tr>
+                <td>0377-3866</td>
+                <td>Proyector</td>
+                <td>Epson</td>
+                <td>XGA-210</td>
+                <td>SN67890</td>
+                <td>Regular</td>
+                <td>Aula 2</td>
+                <td>Donación</td>
+                <td>Requiere mantenimiento</td>
+                <td>Uso compartido</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-page="/Inventario/Edit">✏️ Editar</a>
+                    <a class="btn btn-sm btn-danger" asp-page="/Inventario/Delete">🗑️ Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
