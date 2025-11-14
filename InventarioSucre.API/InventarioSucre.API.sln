@@ -1,17 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36109.1 d17.14
+VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstracciones", "Abstracciones\Abstracciones.csproj", "{FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BD", "BD\BD.sqlproj", "{0790D56E-F9D3-4445-86E0-A400F931ECEB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{361B4845-A508-4844-934B-A60AA19F0751}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0F001CD8-790D-48A4-9CC1-73DC4232FD28} = {0F001CD8-790D-48A4-9CC1-73DC4232FD28}
+		{89AA390F-C1EE-4D7D-9FED-0876F918FDD9} = {89AA390F-C1EE-4D7D-9FED-0876F918FDD9}
+		{BAEF4397-C985-4DF8-8981-5950E372A5C6} = {BAEF4397-C985-4DF8-8981-5950E372A5C6}
+		{FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F} = {FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DA", "DA\DA.csproj", "{89AA390F-C1EE-4D7D-9FED-0876F918FDD9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F} = {FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flujo", "Flujo\Flujo.csproj", "{BAEF4397-C985-4DF8-8981-5950E372A5C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F} = {FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reglas", "Reglas\Reglas.csproj", "{0F001CD8-790D-48A4-9CC1-73DC4232FD28}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F} = {FAFDD4A4-5FB2-4D5B-A1E0-74AEAEB7544F}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +58,10 @@ Global
 		{BAEF4397-C985-4DF8-8981-5950E372A5C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAEF4397-C985-4DF8-8981-5950E372A5C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAEF4397-C985-4DF8-8981-5950E372A5C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F001CD8-790D-48A4-9CC1-73DC4232FD28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F001CD8-790D-48A4-9CC1-73DC4232FD28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F001CD8-790D-48A4-9CC1-73DC4232FD28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F001CD8-790D-48A4-9CC1-73DC4232FD28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
