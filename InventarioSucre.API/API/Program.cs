@@ -17,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IInventarioFlujo, InventarioFlujo>();
 builder.Services.AddScoped<IInventarioDA, InventarioDA>();
+builder.Services.AddScoped<IEstadoFlujo, EstadoFlujo>();
+builder.Services.AddScoped<IEstadoDA, EstadoDA>();
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
 builder.Services.AddScoped<IConfiguracion, Configuracion>();
 

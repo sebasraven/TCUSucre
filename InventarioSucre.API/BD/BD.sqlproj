@@ -68,5 +68,10 @@
     <Build Include="dbo\Stored Procedures\EliminarInventario.sql" />
     <Build Include="dbo\Stored Procedures\EditarInventario.sql" />
     <Build Include="dbo\Stored Procedures\AgregarInventario.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerEstados.sql" />
+    <Build Include="dbo\Stored Procedures\ObtenerEstado.sql" />
+    <Build Include="dbo\Stored Procedures\EliminarEstado.sql" />
+    <Build Include="dbo\Stored Procedures\EditarEstado.sql" />
+    <Build Include="dbo\Stored Procedures\AgregarEstado.sql" />
   </ItemGroup>
 </Project>

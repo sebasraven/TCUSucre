@@ -1,0 +1,94 @@
+﻿@page
+@model Web.Pages.Inventario.AgregarModel
+@{
+    ViewData["Title"] = "Registrar Bien";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <div class="card bg-dark text-light shadow-lg">
+        <div class="card-header text-center">
+            <h2>➕ Registrar Bien</h2>
+            <p class="text-muted">Escuela Antonio José de Sucre</p>
+        </div>
+        <div class="card-body">
+            @if (ViewData["Message"] != null)
+            {
+                <div class="alert alert-success text-center">
+                    @ViewData["Message"]
+                </div>
+            }
+
+            <form method="post">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">N° de identif.</label>
+                        <input asp-for="Inventario.NumeroIdentificacion" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Inventario.NumeroIdentificacion" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Descripción</label>
+                        <input asp-for="Inventario.Descripcion" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Inventario.Descripcion" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Marca</label>
+                        <input asp-for="Inventario.Marca" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Inventario.Marca" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Modelo</label>
+                        <input asp-for="Inventario.Modelo" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Inventario.Modelo" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Serie</label>
+                        <input asp-for="Inventario.Serie" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Inventario.Serie" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Estado</label>
+                        <select asp-for="Inventario.IdEstado" class="form-select bg-dark text-light border-secondary" asp-items="Model.Estados"></select>
+                        <span asp-validation-for="Inventario.IdEstado" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Ubicación</label>
+                        <input asp-for="Inventario.Ubicacion" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Inventario.Ubicacion" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Modo de Adquisición</label>
+                        <input asp-for="Inventario.ModoAdquisicion" class="form-control bg-dark text-light border-secondary" />
+                        <span asp-validation-for="Inventario.ModoAdquisicion" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Observaciones</label>
+                        <textarea asp-for="Inventario.Observaciones" class="form-control bg-dark text-light border-secondary" rows="2"></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Observaciones Institucionales</label>
+                        <textarea asp-for="Inventario.ObservacionesInstitucionales" class="form-control bg-dark text-light border-secondary" rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-primary mx-2">💾 Guardar y seguir agregando</button>
+                    <a asp-page="Index" class="btn btn-secondary mx-2">⬅️ Volver al Inventario</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

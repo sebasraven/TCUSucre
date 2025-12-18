@@ -1,0 +1,60 @@
+﻿@page
+@model Web.Pages.Inventario.EliminarModel
+@{
+    ViewData["Title"] = "Eliminar Bien";
+    Layout = "_Layout";
+}
+
+<section class="container py-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-uppercase text-danger">Eliminar Bien</h2>
+        <p class="text-muted">Confirma que deseas eliminar este bien del inventario</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="post" class="card bg-dark text-light shadow-lg border-0 p-4">
+                <div class="mb-4 text-center">
+                    <h5 class="text-warning mb-1 fw-semibold">
+                        📦 @Html.DisplayFor(m => m.inventario.Descripcion)
+                    </h5>
+                    <p class="text-muted mb-0">N° de identif.: @Html.DisplayFor(m => m.inventario.NumeroIdentificacion)</p>
+                </div>
+
+                <div class="mb-3">
+                    <p><strong>Marca:</strong> @Html.DisplayFor(m => m.inventario.Marca)</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Modelo:</strong> @Html.DisplayFor(m => m.inventario.Modelo)</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Serie:</strong> @Html.DisplayFor(m => m.inventario.Serie)</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Estado:</strong> @Html.DisplayFor(m => m.inventario.Estado)</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Ubicación:</strong> @Html.DisplayFor(m => m.inventario.Ubicacion)</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Modo de Adquisición:</strong> @Html.DisplayFor(m => m.inventario.ModoAdquisicion)</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Observaciones:</strong> @Html.DisplayFor(m => m.inventario.Observaciones)</p>
+                </div>
+                <div class="mb-3">
+                    <p><strong>Observaciones Institucionales:</strong> @Html.DisplayFor(m => m.inventario.ObservacionesInstitucionales)</p>
+                </div>
+
+                <div class="text-center mt-4">
+                    <a asp-page="./Index" class="btn btn-outline-secondary me-2">
+                        ⬅️ Regresar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        🗑️ Eliminar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

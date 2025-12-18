@@ -17,6 +17,30 @@
         <a class="btn btn-info mx-2" asp-page="Exportar">⬇️ Exportar a Excel</a>
     </div>
 
+    <!-- Filtros -->
+    <div class="card bg-dark text-light shadow-sm mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Buscar Bien</label>
+                    <input type="text" name="FiltroTexto" value="@Model.FiltroTexto" class="form-control bg-dark text-light border-secondary"/>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Estado</label>
+                    <select name="FiltroEstado" class="form-select bg-dark text-light border-secondary" asp-items="Model.Estados">
+                        <option value="">-- Todos --</option>
+                    </select>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-success me-2">🔍 Filtrar</button>
+                    <a asp-page="Index" class="btn btn-secondary">❌ Limpiar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Tabla dinámica -->
     <h3 class="mt-4">Inventario de Bienes</h3>
     <table class="table table-striped table-bordered table-dark">
