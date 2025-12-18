@@ -4,8 +4,11 @@ using Abstracciones.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using System.Drawing;
 using System.ComponentModel;
+using System.Drawing;
+using System.Globalization;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace API.Controllers
 {
@@ -81,7 +84,6 @@ namespace API.Controllers
             using var package = new ExcelPackage();
             var worksheet = package.Workbook.Worksheets.Add("Inventario");
 
-            // Encabezados
             worksheet.Cells[1, 1].Value = "N° de identif.";
             worksheet.Cells[1, 2].Value = "Descripción";
             worksheet.Cells[1, 3].Value = "Marca";
@@ -93,7 +95,6 @@ namespace API.Controllers
             worksheet.Cells[1, 9].Value = "Observaciones";
             worksheet.Cells[1, 10].Value = "Observaciones Institucionales";
 
-            // Datos
             int fila = 2;
             foreach (var inv in inventarios)
             {
@@ -110,7 +111,6 @@ namespace API.Controllers
                 fila++;
             }
 
-            // Aplicar estilos con 50 colores
             AplicarEstilos(worksheet, fila - 1);
 
             var content = package.GetAsByteArray();
@@ -131,19 +131,16 @@ namespace API.Controllers
         }
 
 
-
         private void AplicarEstilos(ExcelWorksheet worksheet, int totalFilas)
         {
             int totalColumnas = 10;
 
-            // Encabezados
             var headerRange = worksheet.Cells[1, 1, 1, totalColumnas];
             headerRange.Style.Font.Bold = true;
             headerRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
             headerRange.Style.Fill.BackgroundColor.SetColor(Color.Yellow);
             headerRange.Style.Border.BorderAround(ExcelBorderStyle.Thin, Color.Black);
 
-            // 🎨 Lista de 50 colores
             var colores = new List<Color>
     {
         Color.LightBlue, Color.LightGreen, Color.MistyRose, Color.LightYellow, Color.LightGray,
@@ -158,14 +155,15 @@ namespace API.Controllers
         Color.Wheat, Color.WhiteSmoke, Color.YellowGreen, Color.SandyBrown, Color.Aquamarine
     };
 
-            // Detectar ubicaciones distintas
             var ubicaciones = new HashSet<string>();
             for (int fila = 2; fila <= totalFilas; fila++)
             {
-                ubicaciones.Add(worksheet.Cells[fila, 7].Text);
+                string ubicacionRaw = worksheet.Cells[fila, 7].Text;
+                string ubicacionNorm = NormalizarUbicacion(ubicacionRaw);
+                if (!string.IsNullOrEmpty(ubicacionNorm))
+                    ubicaciones.Add(ubicacionNorm);
             }
 
-            // Asignar color a cada ubicación
             var ubicacionColores = new Dictionary<string, Color>();
             int index = 0;
             foreach (var ubicacion in ubicaciones)
@@ -174,15 +172,16 @@ namespace API.Controllers
                 index++;
             }
 
-            // Aplicar color por fila según ubicación
             for (int fila = 2; fila <= totalFilas; fila++)
             {
-                string ubicacion = worksheet.Cells[fila, 7].Text;
-                if (ubicacionColores.ContainsKey(ubicacion))
+                string ubicacionRaw = worksheet.Cells[fila, 7].Text;
+                string ubicacionNorm = NormalizarUbicacion(ubicacionRaw);
+
+                if (ubicacionColores.ContainsKey(ubicacionNorm))
                 {
                     var rowRange = worksheet.Cells[fila, 1, fila, totalColumnas];
                     rowRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
-                    rowRange.Style.Fill.BackgroundColor.SetColor(ubicacionColores[ubicacion]);
+                    rowRange.Style.Fill.BackgroundColor.SetColor(ubicacionColores[ubicacionNorm]);
 
                     rowRange.Style.Border.Top.Style = ExcelBorderStyle.Thin;
                     rowRange.Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
@@ -195,8 +194,36 @@ namespace API.Controllers
                 }
             }
 
-            // Ajustar ancho de columnas
             worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+        }
+
+
+        private string NormalizarUbicacion(string ubicacion)
+        {
+            if (string.IsNullOrWhiteSpace(ubicacion))
+                return string.Empty;
+
+            string texto = ubicacion.ToLowerInvariant();
+
+            texto = texto.Replace(" ", "");
+
+            texto = texto.Normalize(NormalizationForm.FormD);
+
+            var sb = new StringBuilder();
+            foreach (var c in texto)
+            {
+                var uc = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (uc != UnicodeCategory.NonSpacingMark) 
+                {
+                    sb.Append(c);
+                }
+            }
+
+            texto = sb.ToString().Normalize(NormalizationForm.FormC);
+
+            texto = Regex.Replace(texto, @"[^a-z0-9]", "");
+
+            return texto;
         }
 
 

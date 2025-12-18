@@ -11,18 +11,16 @@
 
     <hr />
 
-    <!-- Botones principales -->
     <div class="d-flex justify-content-center mb-4">
         <a class="btn btn-primary mx-2" asp-page="Agregar">➕ Registrar Bien</a>
         <a class="btn btn-info mx-2" asp-page="Exportar">⬇️ Exportar a Excel</a>
     </div>
 
-    <!-- Filtros -->
     <div class="card bg-dark text-light shadow-sm mb-4">
         <div class="card-body">
             <form method="get" class="row g-3">
                 <div class="col-md-4">
-                    <label class="form-label">Buscar Bien</label>
+                    <label class="form-label">Buscar</label>
                     <input type="text" name="FiltroTexto" value="@Model.FiltroTexto" class="form-control bg-dark text-light border-secondary"/>
                 </div>
 
@@ -41,7 +39,6 @@
         </div>
     </div>
 
-    <!-- Tabla dinámica -->
     <h3 class="mt-4">Inventario de Bienes</h3>
     <table class="table table-striped table-bordered table-dark">
         <thead>
