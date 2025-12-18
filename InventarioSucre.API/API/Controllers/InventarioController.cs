@@ -57,9 +57,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> Obtener()
         {
-            var resultado = await _inventarioFlujo.Obtener();
-            if (!resultado.Any())
-                return NoContent();
+            var resultado = await _inventarioFlujo.Obtener();            
 
             return Ok(resultado);
         }
