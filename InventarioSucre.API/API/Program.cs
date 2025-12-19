@@ -1,6 +1,7 @@
 using Abstracciones.Interfaces.DA;
 using Abstracciones.Interfaces.Flujo;
 using Abstracciones.Interfaces.Reglas;
+using API.Database;
 using DA;
 using DA.Repositorios;
 using Flujo;
@@ -24,6 +25,8 @@ builder.Services.AddScoped<IConfiguracion, Configuracion>();
 
 var app = builder.Build();
 
+DatabaseInitializer.Initialize(app.Configuration);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -31,7 +34,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
