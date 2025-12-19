@@ -8,7 +8,6 @@ namespace Abstracciones.Modelos
         public string? NumeroIdentificacion { get; set; }
 
         [Required(ErrorMessage = "La descripción es requerida")]
-        [StringLength(200, MinimumLength = 5, ErrorMessage = "La descripción debe tener entre 5 y 200 caracteres")]
         public string Descripcion { get; set; } = string.Empty;
 
         [StringLength(100, ErrorMessage = "La marca debe tener máximo 100 caracteres")]
